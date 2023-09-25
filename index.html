@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+<style>
+  body {
+    font-family: 'Pacifico', cursive;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .chat-container {
+    width: 80%; /* O chat agora ocupa 80% da largura da tela */
+    margin: 10% auto; /* Margem superior e inferior para centralizar verticalmente */
+    background-color: #222;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chat-header {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+  .message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+  }
+  
+  .user-message {
+    background-color: #444;
+    align-self: flex-start;
+  }
+  
+  .agent-message {
+    background-color: #555;
+    align-self: flex-end;
+  }
+  
+  .chat-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+  }
+  
+  .input-field {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: #444;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+  }
+  
+  .send-button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+</style>
+<title>Chat de Atendimento da Pizzaria</title>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Atendimento da Pizzaria</div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="message agent-message">Olá! Bem-vindo à nossa pizzaria. Como posso ajudar você hoje?</div>
+    </div>
+    <div class="chat-input">
+      <input class="input-field" type="text" placeholder="Digite sua mensagem..." id="user-input">
+      <button class="send-button" id="send-button">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    sendButton.addEventListener('click', () => {
+      const userMessage = userInput.value.trim();
+
+      if (userMessage !== '') {
+        const userMessageElement = document.createElement('div');
+        userMessageElement.className = 'message user-message';
+        userMessageElement.textContent = userMessage;
+        chatMessages.appendChild(userMessageElement);
+
+        // Simulação de resposta do atendente com sugestões de pizza
+        const agentMessageElement = document.createElement('div');
+        agentMessageElement.className = 'message agent-message';
+        agentMessageElement.textContent = 'Que tipo de pizza você gostaria? Temos sugestões como Margherita, Pepperoni, Quatro Queijos. E qual tamanho: pequena, média ou grande?';
+        chatMessages.appendChild(agentMessageElement);
+
+        userInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
